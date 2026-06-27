@@ -2,7 +2,6 @@
   "productName": "opensuperwhisper-tauri",
   "version": "0.1.0",
   "identifier": "com.starmel.opensuperwhisper",
-  "primaryWindowIcon": "icons/icon",
   "build": {
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build",
