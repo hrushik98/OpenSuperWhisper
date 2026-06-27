@@ -6,7 +6,7 @@
     "architecture": {
         "64bit": {
             "url": "https://github.com/hrushik98/OpenSuperWhisper/releases/download/v0.1.0/opensuperwhisper-tauri_0.1.0_x64-setup.exe#/dl.exe",
-            "hash": "<sha256-hash-will-be-computed-after-github-actions-build>"
+            "hash": "89d5170ec50a313c61fb551c34da83ed843e21fabd7f0940d7c5f6216d65ec70"
         }
     },
     "installer": {
