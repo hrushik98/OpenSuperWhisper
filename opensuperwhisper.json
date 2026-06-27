@@ -1,0 +1,21 @@
+{
+    "version": "0.1.0",
+    "description": "OpenSuperWhisper is a local audio transcription desktop application (Windows Tauri Port).",
+    "homepage": "https://github.com/hrushik98/OpenSuperWhisper",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/hrushik98/OpenSuperWhisper/releases/download/v0.1.0/opensuperwhisper-tauri_0.1.0_x64-setup.exe#/dl.exe",
+            "hash": "<sha256-hash-will-be-computed-after-github-actions-build>"
+        }
+    },
+    "installer": {
+        "keep": true
+    },
+    "shortcuts": [
+        [
+            "opensuperwhisper-tauri.exe",
+            "OpenSuperWhisper"
+        ]
+    ]
+}

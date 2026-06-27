@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenSuperWhisper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles.css" />
+    <script type="module" src="/src/main.ts" defer></script>
+  </head>
+
+  <body>
+    <div class="glow-bg"></div>
+    <div class="app-container">
+      
+      <!-- Side Navigation -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="logo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+          </div>
+          <span class="logo-text">OSW</span>
+        </div>
+        
+        <nav class="nav-menu">
+          <button class="nav-item active" data-tab="dictate">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+            <span>Dictation</span>
+          </button>
+          
+          <button class="nav-item" data-tab="history">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+            <span>History</span>
+          </button>
+          
+          <button class="nav-item" data-tab="settings">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <span>Settings</span>
+          </button>
+        </nav>
+        
+        <div class="sidebar-footer">
+          <div class="engine-badge">
+            <span class="badge-dot"></span>
+            <span id="active-model-name">No Model</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="content-area">
+        
+        <!-- DICTATION VIEW -->
+        <section id="tab-dictate" class="tab-content active">
+          <div class="view-header">
+            <h1>Voice Dictation</h1>
+            <p>Speak clearly, and the transcription will be copied and pasted automatically.</p>
+          </div>
+          
+          <div class="dictate-grid">
+            <div class="card main-recorder-card">
+              <!-- Drop Zone -->
+              <div id="drop-zone" class="drop-zone">
+                <div class="drop-zone-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <span>Drag & Drop any WAV file here to transcribe</span>
+                </div>
+              </div>
+
+              <!-- Main Recorder Control -->
+              <div class="recorder-container">
+                <div class="wave-animation" id="record-wave">
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                </div>
+
+                <button id="record-btn" class="record-button">
+                  <span class="record-pulse"></span>
+                  <div class="record-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>
+                  </div>
+                </button>
+                
+                <div class="recording-timer" id="recording-timer">00:00</div>
+                <div class="recorder-status" id="recorder-status">Ready to Record</div>
+                
+                <div class="recorder-actions" id="recorder-actions" style="display: none;">
+                  <button id="cancel-record-btn" class="btn btn-secondary">
+                    <span>Cancel</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card result-card">
+              <div class="card-header">
+                <h3>Latest Transcription</h3>
+                <div class="card-actions">
+                  <button id="copy-latest-btn" class="btn btn-icon" title="Copy text">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="result-text-container">
+                <textarea id="result-text" placeholder="Transcribed text will appear here..." readonly></textarea>
+              </div>
+              <div class="result-meta">
+                <span id="word-count">0 words</span>
+                <span id="char-count">0 characters</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- HISTORY VIEW -->
+        <section id="tab-history" class="tab-content">
+          <div class="view-header">
+            <div class="header-with-action">
+              <div>
+                <h1>Transcription History</h1>
+                <p>Manage and play back your past dictations.</p>
+              </div>
+              <button id="clear-history-btn" class="btn btn-danger">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                <span>Clear All</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="search-bar-container">
+            <svg xmlns="http://www.w3.org/2000/svg" class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="history-search" placeholder="Search transcriptions..." />
+          </div>
+
+          <div class="history-list" id="history-list">
+            <!-- Items injected by JS -->
+            <div class="empty-state">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg>
+              <h3>No transcriptions yet</h3>
+              <p>Start recording or drop files to build your history.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SETTINGS VIEW -->
+        <section id="tab-settings" class="tab-content">
+          <div class="view-header">
+            <h1>Preferences</h1>
+            <p>Configure hardware, shortcuts, and Whisper engine parameters.</p>
+          </div>
+
+          <div class="settings-grid">
+            <!-- Hardware Card -->
+            <div class="card settings-card">
+              <div class="settings-card-header">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                <h3>Hardware & Inputs</h3>
+              </div>
+              <div class="settings-group">
+                <label for="mic-select">Microphone Device</label>
+                <div class="select-wrapper">
+                  <select id="mic-select">
+                    <option value="">Default Microphone</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Model Card -->
+            <div class="card settings-card">
+              <div class="settings-card-header">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                <h3>Whisper Models</h3>
+              </div>
+              <div class="settings-group">
+                <label for="model-select">Active Model</label>
+                <div class="select-wrapper">
+                  <select id="model-select">
+                    <option value="">No models available</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="download-section">
+                <h4>Quick Download Preset Models</h4>
+                <p class="subtitle">Models download directly from HuggingFace to your application support folder.</p>
+                
+                <div class="model-download-list">
+                  <div class="model-download-item" data-model="ggml-tiny.en.bin">
+                    <div class="model-info">
+                      <span class="model-name">Tiny (English only)</span>
+                      <span class="model-size">~75 MB - High Speed</span>
+                    </div>
+                    <button class="btn btn-secondary btn-sm download-btn">Download</button>
+                  </div>
+                  
+                  <div class="model-download-item" data-model="ggml-tiny.bin">
+                    <div class="model-info">
+                      <span class="model-name">Tiny (Multilingual)</span>
+                      <span class="model-size">~75 MB - High Speed</span>
+                    </div>
+                    <button class="btn btn-secondary btn-sm download-btn">Download</button>
+                  </div>
+                  
+                  <div class="model-download-item" data-model="ggml-base.en.bin">
+                    <div class="model-info">
+                      <span class="model-name">Base (English only)</span>
+                      <span class="model-size">~145 MB - Recommended</span>
+                    </div>
+                    <button class="btn btn-secondary btn-sm download-btn">Download</button>
+                  </div>
+
+                  <div class="model-download-item" data-model="ggml-base.bin">
+                    <div class="model-info">
+                      <span class="model-name">Base (Multilingual)</span>
+                      <span class="model-size">~148 MB - Good balance</span>
+                    </div>
+                    <button class="btn btn-secondary btn-sm download-btn">Download</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Transcription Preferences -->
+            <div class="card settings-card">
+              <div class="settings-card-header">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                <h3>Engine & Output</h3>
+              </div>
+              
+              <div class="settings-group">
+                <label for="language-select">Target Language</label>
+                <div class="select-wrapper">
+                  <select id="language-select">
+                    <option value="auto">Auto Detect</option>
+                    <option value="en">English</option>
+                    <option value="zh">Chinese (中文)</option>
+                    <option value="ja">Japanese (日本語)</option>
+                    <option value="ko">Korean (한국어)</option>
+                    <option value="es">Spanish (Español)</option>
+                    <option value="fr">French (Français)</option>
+                    <option value="de">German (Deutsch)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="settings-toggles">
+                <div class="toggle-item">
+                  <div class="toggle-info">
+                    <span class="toggle-title">CJK Autocorrect Spacing</span>
+                    <span class="toggle-desc">Automatically add spaces between CJK and English characters</span>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" id="cjk-toggle" checked>
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="toggle-item">
+                  <div class="toggle-info">
+                    <span class="toggle-title">Auto-paste Text</span>
+                    <span class="toggle-desc">Automatically paste text into the active window when transcription ends</span>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" id="autopaste-toggle" checked>
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="toggle-item">
+                  <div class="toggle-info">
+                    <span class="toggle-title">Play Audio Notifications</span>
+                    <span class="toggle-desc">Play sound beeps on recording start and stop</span>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" id="sounds-toggle" checked>
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Global Shortcut Options -->
+            <div class="card settings-card">
+              <div class="settings-card-header">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"/><line x1="6" y1="8" x2="6" y2="8"/><line x1="10" y1="8" x2="10" y2="8"/><line x1="14" y1="8" x2="14" y2="8"/><line x1="18" y1="8" x2="18" y2="8"/><line x1="6" y1="12" x2="6" y2="12"/><line x1="10" y1="12" x2="10" y2="12"/><line x1="14" y1="12" x2="14" y2="12"/><line x1="18" y1="12" x2="18" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/></svg>
+                <h3>System Integration</h3>
+              </div>
+
+              <div class="settings-group">
+                <label for="shortcut-input">Keyboard Shortcut (Toggle Recording)</label>
+                <input type="text" id="shortcut-input" class="text-input" placeholder="e.g. F9" value="F9" readonly />
+                <span class="help-text">Pressing F9 inside the app will start/stop recording. Global shortcut support runs through system hotkey binding.</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+        
+      </main>
+    </div>
+
+    <!-- Active Download Progress HUD -->
+    <div id="download-progress-hud" class="download-hud" style="display: none;">
+      <div class="hud-header">
+        <span class="hud-title">Downloading model...</span>
+        <button id="cancel-hud-download" class="btn-close">&times;</button>
+      </div>
+      <div class="hud-body">
+        <div class="progress-info">
+          <span id="hud-model-name">ggml-tiny.bin</span>
+          <span id="hud-percentage">0%</span>
+        </div>
+        <div class="progress-track">
+          <div id="hud-progress-bar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

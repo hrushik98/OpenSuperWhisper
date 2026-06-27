@@ -1,0 +1,17 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/schema/capability.json",
+  "identifier": "default",
+  "description": "Default capabilities for OpenSuperWhisper",
+  "windows": ["main"],
+  "permissions": [
+    "core:path:default",
+    "core:event:default",
+    "core:window:default",
+    "core:menu:default",
+    "core:tray:default",
+    "core:app:default",
+    "core:resources:default",
+    "opener:default",
+    "core:webview:default"
+  ]
+}
